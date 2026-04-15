@@ -1,0 +1,49 @@
+[project]
+src = "src"
+out = "out"
+dot_env = ".env"
+
+[networks.contracts.vrf_coordinator]
+deployer_script = "script/deploy_vrf_coordinator_mock.py"
+
+[networks.pyevm]
+is_zksync = false
+
+[networks.anvil]
+url = "http://127.0.0.1:8545"
+prompt_live = false
+save_to_db = false
+chain_id = 31337
+
+# Local network configuration
+[networks.anvil.extra_data]
+entrance_fee = 100000000
+raffle_interval = 60
+subscription_id = 1
+
+[networks.sepolia]
+url = "https://ethereum-sepolia-rpc.publicnode.com"
+chain_id = 11155111
+default_account_name = "sepolia_1"
+accounts = ["player1", "sepolia_1"]
+unsafe_password_file = ".password"
+explorer_uri = "https://eth-sepolia.blockscout.com"
+explorer_type = "blockscout"
+
+# Network-specific deployment configuration
+[networks.sepolia.extra_data]
+entrance_fee = 100000000                                            # 1 * (10**8)
+raffle_interval = 60
+raffle_fee_collector = "0xD13F0BD22AFF8176761AEFBFC052A7490BDE268E"
+# subscription_id is too large for TOML, defined in network_config.py
+
+[networks.sepolia.contracts.vrf_coordinator]
+address = "0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B"
+
+[networks.zksync-sepolia]
+url = "https://sepolia.era.zksync.dev"
+chain_id = 300
+is_zksync = true
+prompt_live = true
+
+# You can view all configuration options at https://cyfrin.github.io/moccasin/all_moccasin_toml_parameters.html

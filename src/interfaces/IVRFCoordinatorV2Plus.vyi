@@ -1,0 +1,20 @@
+# pragma version ^0.4.1
+# @license MIT
+
+# Struct definitions
+struct RandomWordsRequest:
+    keyHash: bytes32
+    subId: uint256
+    requestConfirmations: uint16
+    callbackGasLimit: uint32
+    numWords: uint32
+    extraArgs: Bytes[1024]
+
+@external
+def requestRandomWords(req: RandomWordsRequest) -> uint256:
+    """
+    @notice Request a set of random words.
+    @param req a struct containing fields for randomness request
+    @return requestId A unique identifier of the request.
+    """
+    ...
